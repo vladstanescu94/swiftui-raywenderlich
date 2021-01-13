@@ -35,6 +35,63 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DEB7F5CC25AF10CB0093A17E /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				DEF8E00025ADBC8B00DAB0F9 /* BullseyeApp.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		DEB7F5CD25AF10E10093A17E /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				DEB7F5CE25AF10E60093A17E /* Home */,
+				DEB7F5CF25AF10EF0093A17E /* About */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		DEB7F5CE25AF10E60093A17E /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				DEB7F5D125AF11010093A17E /* Views */,
+				DEB7F5D025AF10F70093A17E /* ViewModels */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		DEB7F5CF25AF10EF0093A17E /* About */ = {
+			isa = PBXGroup;
+			children = (
+				DEB7F5D225AF11090093A17E /* Views */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
+		DEB7F5D025AF10F70093A17E /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				DEB7F5C725AF0D730093A17E /* HomeViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		DEB7F5D125AF11010093A17E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DEF8E00225ADBC8B00DAB0F9 /* HomeView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DEB7F5D225AF11090093A17E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		DEF8DFF425ADBC8B00DAB0F9 = {
 			isa = PBXGroup;
 			children = (
@@ -54,12 +111,11 @@
 		DEF8DFFF25ADBC8B00DAB0F9 /* Bullseye */ = {
 			isa = PBXGroup;
 			children = (
-				DEF8E00025ADBC8B00DAB0F9 /* BullseyeApp.swift */,
-				DEF8E00225ADBC8B00DAB0F9 /* HomeView.swift */,
+				DEB7F5CD25AF10E10093A17E /* Features */,
+				DEB7F5CC25AF10CB0093A17E /* AppDelegate */,
 				DEF8E00425ADBC8C00DAB0F9 /* Assets.xcassets */,
 				DEF8E00925ADBC8C00DAB0F9 /* Info.plist */,
 				DEF8E00625ADBC8C00DAB0F9 /* Preview Content */,
-				DEB7F5C725AF0D730093A17E /* HomeViewModel.swift */,
 			);
 			path = Bullseye;
 			sourceTree = "<group>";
