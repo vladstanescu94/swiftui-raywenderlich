@@ -48,3 +48,22 @@ struct CustomButton: ViewModifier {
             .background(Image("Button").resizable().aspectRatio(contentMode: .fit))
     }
 }
+
+struct HeadingStyle: ViewModifier {
+    func body(content: Content) -> some View {
+        return content
+            .font(.custom("Arial Rounded MT Bold", size: 30))
+            .foregroundColor(.black)
+            .padding(.vertical, 20)
+    }
+}
+
+struct AboutTextStyle: ViewModifier {
+    func body(content: Content) -> some View {
+        return content
+            .font(.custom("Arial Rounded MT Bold", size: 16))
+            .foregroundColor(.black)
+            .padding(.horizontal, 60)
+            .padding(.bottom, 20)
+    }
+}

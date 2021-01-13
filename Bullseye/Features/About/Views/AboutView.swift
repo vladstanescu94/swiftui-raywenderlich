@@ -8,15 +8,23 @@
 import SwiftUI
 
 struct AboutView: View {
+    let aboutBackground = Color(.sRGB, red: 1, green: 214/255.0, blue: 179/255.0, opacity: 1)
     var body: some View {
-        VStack {
-            Text("🎯 Bullseye 🎯")
-            Text("This is Bullseye, the game where you can win points and earn fame by dragging a slider.")
-            Text("Your goal is to place the slider as close as possible to the target value. The closer you are, the more points you score.")
-            Text("Enjoy!")
+        Group {
+            VStack {
+                Text("🎯 Bullseye 🎯")
+                    .modifier(HeadingStyle())
+                Text("This is Bullseye, the game where you can win points and earn fame by dragging a slider.")
+                    .modifier(AboutTextStyle())
+                Text("Your goal is to place the slider as close as possible to the target value. The closer you are, the more points you score.")
+                    .modifier(AboutTextStyle())
+                Text("Enjoy!")
+                    .modifier(AboutTextStyle())
+            }
+            .background(aboutBackground)
+            .navigationBarTitle("About Bullseye")
         }
-        .background(Image("Background"), alignment: .center)
-        .navigationBarTitle("About Bullseye")
+        .background(Image("Background"))
     }
 }
 
