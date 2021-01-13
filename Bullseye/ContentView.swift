@@ -14,12 +14,28 @@ struct ContentView: View {
     @State private var score = 0
     @State private var roundCounter = 1
     
+    struct CustomShadow: ViewModifier {
+        func body(content: Content) -> some View {
+            return content
+                .shadow(color: .black, radius: 5, x: 2, y: 2)
+        }
+    }
+    
     struct LabelStyle: ViewModifier {
         func body(content: Content) -> some View {
             return content
                 .font(.custom("Arial Rounded MT Bold", size: 18))
                 .foregroundColor(.white)
-                .shadow(color: .black, radius: 5, x: 2, y: 2)
+                .modifier(CustomShadow())
+        }
+    }
+    
+    struct ValueStyle: ViewModifier {
+        func body(content: Content) -> some View {
+            return content
+                .font(.custom("Arial Rounded MT Bold", size: 24))
+                .foregroundColor(.yellow)
+                .modifier(CustomShadow())
         }
     }
     
@@ -29,17 +45,20 @@ struct ContentView: View {
             // Target row
             HStack {
                 Text("Put the bullseye as close as you can to:")
+                    .modifier(LabelStyle())
                 Text("\(target)")
-            }.modifier(LabelStyle())
+                    .modifier(ValueStyle())
+            }
             
             Spacer()
             // Slider row
             HStack {
                 Text("1")
+                    .modifier(LabelStyle())
                 Slider(value: $sliderValue, in: 1...100)
                 Text("100")
+                    .modifier(LabelStyle())
             }
-            .modifier(LabelStyle())
             Spacer()
             // Button row
             Button(action: {
@@ -63,18 +82,23 @@ struct ContentView: View {
                 Button(action: reset, label: {
                     Text("Start over")
                 })
+                .modifier(LabelStyle())
                 Spacer()
                 Text("Score:")
+                    .modifier(LabelStyle())
                 Text("\(score)")
+                    .modifier(ValueStyle())
                 Spacer()
                 Text("Round:")
+                    .modifier(LabelStyle())
                 Text("\(roundCounter)")
+                    .modifier(ValueStyle())
                 Spacer()
                 Button(action: {}, label: {
                     Text("Info")
                 })
+                .modifier(LabelStyle())
             }
-            .modifier(LabelStyle())
             .padding(.bottom)
             
         }
