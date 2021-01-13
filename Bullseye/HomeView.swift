@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct HomeView: View {
     @StateObject var homeViewModel = HomeViewModel()
     @State private var alertIsVisible = false
     
@@ -132,7 +132,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        HomeView()
             .previewLayout(.fixed(width: 896, height: 414))
     }
 }
