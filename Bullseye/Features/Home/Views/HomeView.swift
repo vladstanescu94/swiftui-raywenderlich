@@ -72,7 +72,7 @@ struct HomeView: View {
                 Text("\(homeViewModel.roundCounter)")
                     .modifier(ValueStyle())
                 Spacer()
-                Button(action: {}, label: {
+                NavigationLink(destination: AboutView(), label: {
                     HStack {
                         Image("InfoIcon")
                         Text("Info")
@@ -85,6 +85,7 @@ struct HomeView: View {
             
         }
         .background(Image("Background"), alignment: .center)
+        .navigationBarHidden(true)
     }
 }
 

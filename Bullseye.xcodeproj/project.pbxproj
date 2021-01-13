@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DE2FC16125AF125900E209C2 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2FC16025AF125900E209C2 /* AboutView.swift */; };
 		DEB7F5C825AF0D730093A17E /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB7F5C725AF0D730093A17E /* HomeViewModel.swift */; };
 		DEB7F5D625AF11980093A17E /* CustomStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB7F5D525AF11980093A17E /* CustomStyles.swift */; };
 		DEF8E00125ADBC8B00DAB0F9 /* BullseyeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF8E00025ADBC8B00DAB0F9 /* BullseyeApp.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DE2FC16025AF125900E209C2 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		DEB7F5C725AF0D730093A17E /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		DEB7F5D525AF11980093A17E /* CustomStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStyles.swift; sourceTree = "<group>"; };
 		DEF8DFFD25ADBC8B00DAB0F9 /* Bullseye.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bullseye.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,6 +93,7 @@
 		DEB7F5D225AF11090093A17E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DE2FC16025AF125900E209C2 /* AboutView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 				DEF8E00325ADBC8B00DAB0F9 /* HomeView.swift in Sources */,
 				DEB7F5C825AF0D730093A17E /* HomeViewModel.swift in Sources */,
 				DEF8E00125ADBC8B00DAB0F9 /* BullseyeApp.swift in Sources */,
+				DE2FC16125AF125900E209C2 /* AboutView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
