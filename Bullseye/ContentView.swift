@@ -8,11 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var homeViewModel = HomeViewModel()
     @State private var alertIsVisible = false
-    @State private var sliderValue = 50.0
-    @State private var target = Int.random(in: 1...100)
-    @State private var score = 0
-    @State private var roundCounter = 1
     
     struct CustomShadow: ViewModifier {
         func body(content: Content) -> some View {
@@ -63,7 +60,7 @@ struct ContentView: View {
             HStack {
                 Text("Put the bullseye as close as you can to:")
                     .modifier(LabelStyle())
-                Text("\(target)")
+                Text("\(homeViewModel.target)")
                     .modifier(ValueStyle())
             }
             
@@ -72,7 +69,7 @@ struct ContentView: View {
             HStack {
                 Text("1")
                     .modifier(LabelStyle())
-                Slider(value: $sliderValue, in: 1...100)
+                Slider(value: $homeViewModel.sliderValue, in: 1...100)
                     .accentColor(.green)
                 Text("100")
                     .modifier(LabelStyle())
@@ -87,19 +84,17 @@ struct ContentView: View {
                     .modifier(PaddingHuge())
             }
             .alert(isPresented: $alertIsVisible) { () -> Alert in
-                return Alert(title: Text(generateAlertTitle()), message: Text("The slider value is \(roundSliderValue()). \n" +
-                                                                                "You scored \(calculatePointsForCurrentRound()) points this round."
+                return Alert(title: Text(homeViewModel.generateAlertTitle()), message: Text("The slider value is \(homeViewModel.roundSliderValue()). \n" +
+                                                                                                "You scored \(homeViewModel.calculatePointsForCurrentRound()) points this round."
                 ), dismissButton: .default(Text("Awesome!")) {
-                    score += calculatePointsForCurrentRound()
-                    target = Int.random(in: 1...100)
-                    roundCounter += 1
+                    homeViewModel.updateGameState()
                 })
             }
             .modifier(CustomButton())
             Spacer()
             // Score row
             HStack {
-                Button(action: reset, label: {
+                Button(action: homeViewModel.reset, label: {
                     HStack {
                         Image("StartOverIcon")
                         Text("Start over")
@@ -111,12 +106,12 @@ struct ContentView: View {
                 Spacer()
                 Text("Score:")
                     .modifier(LabelStyle())
-                Text("\(score)")
+                Text("\(homeViewModel.score)")
                     .modifier(ValueStyle())
                 Spacer()
                 Text("Round:")
                     .modifier(LabelStyle())
-                Text("\(roundCounter)")
+                Text("\(homeViewModel.roundCounter)")
                     .modifier(ValueStyle())
                 Spacer()
                 Button(action: {}, label: {
@@ -132,55 +127,6 @@ struct ContentView: View {
             
         }
         .background(Image("Background"), alignment: .center)
-    }
-    
-    func roundSliderValue() -> Int {
-        return Int(sliderValue.rounded())
-    }
-    
-    func calculateDifferenceFromTarget() -> Int {
-        return abs(roundSliderValue() - target)
-    }
-    
-    func calculateBonusPoints() -> Int {
-        let bonus: Int
-        let difference = calculateDifferenceFromTarget()
-        
-        if difference == 0 {
-            bonus = 100
-        } else if difference == 1 {
-            bonus = 50
-        } else {
-            bonus = 0
-        }
-        return bonus
-    }
-    
-    func calculatePointsForCurrentRound() -> Int {
-        let maxScore = 100
-        return maxScore - calculateDifferenceFromTarget() + calculateBonusPoints()
-    }
-    
-    func generateAlertTitle() -> String {
-        let title: String
-        let difference = calculateDifferenceFromTarget()
-        
-        if difference == 0 {
-            title = "Perfect!"
-        } else if difference < 5 {
-            title = "You almost had it!"
-        } else {
-            title = "Are you even trying?"
-        }
-        
-        return title
-    }
-    
-    func reset() {
-        score = 0
-        roundCounter = 1
-        sliderValue = 50.0
-        target = Int.random(in: 1...100)
     }
 }
 
