@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var alertIsVisible: Bool = false
-    @State private var sliderValue: Double = 0.0
+    @State private var sliderValue: Double = 50.0
+    @State private var target: Int = Int.random(in: 1...100)
     
     var body: some View {
         VStack {
@@ -17,26 +18,25 @@ struct ContentView: View {
             // Target row
             HStack {
                 Text("Put the bullseye as close as you can to:")
-                Text("100")
+                Text("\(target)")
             }
             Spacer()
             // Slider row
             HStack {
                 Text("1")
-                Slider(value: $sliderValue)
+                Slider(value: $sliderValue, in: 1...100, step: 1.0)
                 Text("100")
             }
             Spacer()
             // Button row
             Button(action: {
-                print("Button pressed!")
                 alertIsVisible.toggle()
             }) {
                 Text("Hit me!")
             }
             .padding()
             .alert(isPresented: $alertIsVisible) { () -> Alert in
-                return Alert(title: Text("Hello there!"), message: Text("This is my first pop-up"), dismissButton: .default(Text("Awesome!")))
+                return Alert(title: Text("Hello there!"), message: Text("The slider value is \(Int(sliderValue.rounded()))"), dismissButton: .default(Text("Awesome!")))
             }
             Spacer()
             // Score row
