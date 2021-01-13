@@ -39,6 +39,23 @@ struct ContentView: View {
         }
     }
     
+    struct PaddingHuge: ViewModifier {
+        func body(content: Content) -> some View {
+            return content
+                .padding(.vertical, 28)
+                .padding(.horizontal, 48)
+            
+        }
+    }
+    
+    struct CustomButton: ViewModifier {
+        func body(content: Content) -> some View {
+            return content
+                .frame(minWidth: 200, minHeight: 80)
+                .background(Image("Button").resizable().aspectRatio(contentMode: .fit))
+        }
+    }
+    
     var body: some View {
         VStack {
             Spacer()
@@ -56,6 +73,7 @@ struct ContentView: View {
                 Text("1")
                     .modifier(LabelStyle())
                 Slider(value: $sliderValue, in: 1...100)
+                    .accentColor(.green)
                 Text("100")
                     .modifier(LabelStyle())
             }
@@ -65,24 +83,31 @@ struct ContentView: View {
                 alertIsVisible.toggle()
             }) {
                 Text("Hit me!")
+                    .modifier(LabelStyle())
+                    .modifier(PaddingHuge())
             }
-            .padding()
             .alert(isPresented: $alertIsVisible) { () -> Alert in
                 return Alert(title: Text(generateAlertTitle()), message: Text("The slider value is \(roundSliderValue()). \n" +
-                    "You scored \(calculatePointsForCurrentRound()) points this round."
+                                                                                "You scored \(calculatePointsForCurrentRound()) points this round."
                 ), dismissButton: .default(Text("Awesome!")) {
                     score += calculatePointsForCurrentRound()
                     target = Int.random(in: 1...100)
                     roundCounter += 1
                 })
             }
+            .modifier(CustomButton())
             Spacer()
             // Score row
             HStack {
                 Button(action: reset, label: {
-                    Text("Start over")
+                    HStack {
+                        Image("StartOverIcon")
+                        Text("Start over")
+                            .modifier(LabelStyle())
+                    }
                 })
-                .modifier(LabelStyle())
+                .modifier(CustomButton())
+                
                 Spacer()
                 Text("Score:")
                     .modifier(LabelStyle())
@@ -95,9 +120,13 @@ struct ContentView: View {
                     .modifier(ValueStyle())
                 Spacer()
                 Button(action: {}, label: {
-                    Text("Info")
+                    HStack {
+                        Image("InfoIcon")
+                        Text("Info")
+                            .modifier(LabelStyle())
+                    }
                 })
-                .modifier(LabelStyle())
+                .modifier(CustomButton())
             }
             .padding(.bottom)
             
@@ -143,7 +172,7 @@ struct ContentView: View {
         } else {
             title = "Are you even trying?"
         }
-    
+        
         return title
     }
     
