@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var alertIsVisible: Bool = false
-    @State private var sliderValue: Double = 50.0
-    @State private var target: Int = Int.random(in: 1...100)
+    @State private var alertIsVisible = false
+    @State private var sliderValue = 50.0
+    @State private var target = Int.random(in: 1...100)
     
     var body: some View {
         VStack {
@@ -36,7 +36,9 @@ struct ContentView: View {
             }
             .padding()
             .alert(isPresented: $alertIsVisible) { () -> Alert in
-                return Alert(title: Text("Hello there!"), message: Text("The slider value is \(Int(sliderValue.rounded()))"), dismissButton: .default(Text("Awesome!")))
+                return Alert(title: Text("Hello there!"), message: Text("The slider value is \(roundSliderValue()). \n" +
+                    "You scored \(calculatePointsForCurrentRound()) points this round."
+                ), dismissButton: .default(Text("Awesome!")))
             }
             Spacer()
             // Score row
@@ -59,6 +61,14 @@ struct ContentView: View {
             
         }
         .padding()
+    }
+    
+    func roundSliderValue() -> Int {
+        return Int(sliderValue.rounded())
+    }
+    
+    func calculatePointsForCurrentRound() -> Int {
+        return 100 - abs(roundSliderValue() - target)
     }
 }
 
